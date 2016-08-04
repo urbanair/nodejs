@@ -44,8 +44,7 @@ router.get('/hello/:name', function(req, res) {
 });
 
 
-app.route('/login') {
-
+app.route('/login')
 	.get(function(req, res) {
 		res.send('this is the login form');
 	})
@@ -54,7 +53,6 @@ app.route('/login') {
 		console.log('processing');
 		res.send('processing the login form!');
 	});
-}
 
 app.use('/', router);
 
