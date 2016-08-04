@@ -14,12 +14,22 @@ app.listen(app.get('port'), function() {
 
 var router = express.Router();
 
+// 在每一個請求被處理之前都會執行的 middleware
+router.use(function(req, res, next) {
+
+  // 輸出記錄訊息至終端機
+  console.log(req.method, req.url);
+
+  // 繼續路由處理
+  next();
+});
+
 router.get('/', function(req, res) {
 	res.send('home page!');
 });
 
-router.get('/about', function(req, res) {
-	res.send('about page!');
+router.get('/hello/:name', function(req, res) {
+	res.send('Hello '+req.params.name);
 });
 
 app.use('/', router);
