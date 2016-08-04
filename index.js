@@ -24,12 +24,23 @@ router.use(function(req, res, next) {
   next();
 });
 
+//驗證參數
+router.param('name', function(req, res, next, name) {
+
+  console.log('doing name validations on ' + name);
+
+  req.name = name;
+
+  next();
+});
+
+
 router.get('/', function(req, res) {
 	res.send('home page!');
 });
 
 router.get('/hello/:name', function(req, res) {
-	res.send('Hello '+req.params.name);
+	res.send('Hello '+req.name);
 });
 
 app.use('/', router);
